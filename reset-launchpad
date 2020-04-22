@@ -1,0 +1,10 @@
+#!/bin/sh
+
+getopts h _ && {
+    echo >&2 "Usage: reset-launchpad"
+    echo >&2 "Resets the Launchpad."
+    exit 2
+}
+
+defaults write com.apple.Dock ResetLaunchPad -bool true
+killall Dock
