@@ -25,3 +25,9 @@ Resets the Lauchpad, forcing it to re-sort apps.
 
 Activates or deactivates Spotlight's file indexing. When indexing
 is off, some apps' functionalities will stop working.
+
+    ytdl <URL>
+
+Downloads a video and extracts its audio. Requires [youtube-dl].
+
+[youtube-dl]: https://youtube-dl.org/

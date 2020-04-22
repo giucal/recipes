@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Extract the audio from a YouTube video.
+
+[ $# -ne 1 ] && {
+    echo >&2 "Usage: ytdl <URL>"
+    exit 2
+}
+
+youtube-dl "${1}" \
+	--no-overwrites \
+	--extract-audio \
+	--audio-format=m4a \
+	--audio-quality=0
