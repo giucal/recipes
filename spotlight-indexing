@@ -1,14 +1,20 @@
 #!/bin/sh
 
-getopts h _ && {
+usage() {
     echo >&2 "Usage: spotlight-indexing (on|off)"
     echo >&2 "Turns Spotlight indexing on/off."
     exit 2
 }
 
+if getopts h _ || [ $# -ne 1 ]; then
+    echo >&2 "Usage: spotlight-indexing (on|off)"
+    echo >&2 "Turns Spotlight indexing on/off."
+    exit 2
+fi
+
 case "$1" in
     (on)  action=load   ;;
     (off) action=unload ;;
-    (*)   exit 2
+    (*)   usage
 esac
 sudo launchctl $action -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist

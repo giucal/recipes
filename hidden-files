@@ -1,15 +1,19 @@
 #!/bin/sh
 
-getopts h _ && {
+usage() {
     echo >&2 "Usage: hidden-files (show|hide)"
     echo >&2 "Turns hidden files visibility on/off."
     exit 2
 }
 
+if getopts h _ || [ $# -ne 1 ]; then
+    usage
+fi
+
 case "$1" in
     (show) value=true  ;;
     (hide) value=false ;;
-    (*)    exit 2
+    (*)    usage
 esac
 defaults write com.apple.Finder AppleShowAllFiles -bool $value
 killall Finder

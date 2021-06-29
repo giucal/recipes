@@ -2,10 +2,10 @@
 
 # Extract the audio from a YouTube video.
 
-[ $# -ne 1 ] && {
+if getopts h _ || [ $# -ne 1 ]; then
     echo >&2 "Usage: ytdl <URL>"
     exit 2
-}
+fi
 
 youtube-dl "${1}" \
 	--no-overwrites \
