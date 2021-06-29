@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# caffeiname -- caffeinate by process name
+
+if getopts h _ || [ $# -ne 1 ]; then
+    echo >&2 "Usage: caffeiname <process-name>"
+    echo >&2 "Caffeinates a process by name."
+    exit 2
+fi
+
+pid=$(pgrep -x "$1" | head -n 1) && caffeinate -w "$pid"
