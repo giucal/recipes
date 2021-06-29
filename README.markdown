@@ -30,6 +30,10 @@ is off, some apps' functionalities will stop working.
 
 Re-enables or disables the desktop.
 
+    itunes-backup (status|on|off)
+
+Turns pre-sync backups for iDevices on or off.
+
     caffeiname <process-name>
 
 `caffainate`s a process by name.

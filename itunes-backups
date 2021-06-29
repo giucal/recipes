@@ -1,0 +1,42 @@
+#!/bin/sh
+
+usage() {
+    echo >&2 "Usage: recipe $(basename "$0") [-h] (status|on|off)"
+    echo >&2 "Turns iTunes automatic iOS backups on/off."
+    exit 2
+}
+
+getopts 'h' _ && usage
+
+# Run and shut TF up.
+q() {
+    "$@"
+} 2>/dev/null
+
+property() {
+    verb=$1
+    shift
+    defaults "$verb" com.apple.iTunes DeviceBackupsDisabled "$@"
+}
+
+case $1 in
+    (status)
+        q let "$(q property read)" && echo "off" || echo "on"
+        exit
+        ;;
+    (on)
+        value=false
+        ;;
+    (off)
+        value=true
+        ;;
+    (*)
+        usage
+        ;;
+esac
+
+property write -bool $value
+
+# Restart iTunes if it was running.
+q killall iTunes || exit 0
+open -a iTunes
