@@ -26,6 +26,10 @@ Resets the Lauchpad, forcing it to re-sort apps.
 Activates or deactivates Spotlight's file indexing. When indexing
 is off, some apps' functionalities will stop working.
 
+    create-desktop (on|off)
+
+Re-enables or disables the desktop.
+
     caffeiname <process-name>
 
 `caffainate`s a process by name.

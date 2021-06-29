@@ -1,0 +1,19 @@
+#!/bin/sh
+
+usage() {
+    echo >&2 "Usage: create-desktop (on|off)"
+    echo >&2 "Turns the desktop on/off."
+    exit 2
+}
+
+if getopts h _ || [ $# -ne 1 ]; then
+    usage
+fi
+
+case "$1" in
+    (on)  value=true  ;;
+    (off) value=false ;;
+    (*)   usage
+esac
+defaults write com.apple.Finder CreateDesktop -bool $value
+killall Finder
